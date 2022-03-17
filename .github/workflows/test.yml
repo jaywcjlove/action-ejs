@@ -58,6 +58,17 @@ jobs:
             }
       - run: cat build/template/demo.html
 
+      - name: ⛑ -> ejs file
+        uses: ./
+        with:
+          template-file: template/demo.ejs
+          output: build/template/demo.html
+          vars: |
+            {
+              "htmlContent": "${{ steps.ejs.outputs.content }}"
+            }
+      - run: cat build/template/demo.html
+
       - name: ⛑ -> vars-file
         uses: ./
         with:
