@@ -18,10 +18,10 @@ jobs:
         id: ejs
         uses: ./
         with:
-          template: |
-            <%= name %>
+          template: <h1><%= name %> <div><div></h1>
+            
           vars: |
-            { "name": "${{ steps.ejs.outputs.name }}" }
+            { "name": "${{ github.repository }}", "conclusion": "${{ steps.ejs.conclusion }}" }
       
       - run: cat build/index.html
       - run: echo "${{ steps.ejs.outputs.content }}"
