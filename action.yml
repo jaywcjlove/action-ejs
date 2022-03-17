@@ -1,0 +1,37 @@
+name: 'action-ejs'
+author: 'Kenny Wong'
+description: 'A github action to render a ejs template using github context.'
+inputs:
+  token:
+    description: 'Your GITHUB_TOKEN'
+    default: ${{ github.token }}
+    required: false
+
+  template:
+    description: 'Input ESJ template string'
+    required: false
+  
+  vars: 
+    description: 'Input variables. A dictionary of variables in JSON format to be used in the template. '
+    required: false
+  
+  options: 
+    description: 'A JSON format string of options to be passed to the template engine.'
+    required: false
+
+  output:
+    description: 'output html path'
+    default: build/index.html
+    required: false
+
+outputs:
+  content:
+    description: 'HTML string'
+
+runs:
+  using: 'node12'
+  main: 'lib/main.js'
+
+branding:
+  icon: 'file-text'  
+  color: 'blue'

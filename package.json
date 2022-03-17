@@ -1,0 +1,32 @@
+{
+  "name": "action-ejs",
+  "version": "1.0.6",
+  "private": true,
+  "scripts": {
+    "prepare": "husky install && npm run build",
+    "build": "ncc build src/main.ts -o lib",
+    "watch": "ncc watch src/main.ts -o lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaywcjlove/action-ejs"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "lint-staged": {
+    "*.ts?(x)": [
+      "npm run build"
+    ]
+  },
+  "dependencies": {
+    "@actions/core": "~1.6.0",
+    "@actions/github": "~5.0.0",
+    "ejs": "~3.1.6"
+  },
+  "devDependencies": {
+    "@types/ejs": "~3.1.0",
+    "@kkt/ncc": "~1.0.13",
+    "husky": "~7.0.4",
+    "lint-staged": "~12.3.4"
+  }
+}
