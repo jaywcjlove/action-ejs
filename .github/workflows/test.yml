@@ -40,17 +40,17 @@ jobs:
           template-file: template/demo.html
           output: build/template/demo.html
           vars: |
-            { "htmlContent": "${{ steps.ejs.outputs.content }}" }
+            {
+              "htmlContent": "${{ steps.ejs.outputs.content }}"
+            }
 
       - name: ⛑ -> template-file
         uses: ./
         with:
           template: <div><%= LICENSE %></div><div><%= markdown %></div>
           output: build/template/demo.html
-          vars-file: !!with
-            markdown: README.md
-            LICENSE: LICENSE
-          vars: |
-            { "htmlContent": "${{ steps.ejs.outputs.content }}" }
+          vars-file: |
+            - markdown: README.md
+            - LICENSE: LICENSE
 
       - run: cat build/template/demo.html
