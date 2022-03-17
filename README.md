@@ -17,14 +17,24 @@ A github action to render a [`ejs`](https://github.com/mde/ejs) template using g
 Following objects are exposed, and can be used in template file:
 
 - `context`: The [Context](https://github.com/actions/toolkit/blob/main/packages/github/src/context.ts) object in [@actions/github](https://github.com/actions/toolkit/tree/main/packages/github)
-- `process`: The `process.env` object. You can access the environment variables with `process.env.<key>`
+- `process`: The `process.env` object. You can access the environment variables with `env.<key>`
 
 ```yml
 - name: action-ejs
   uses: jaywcjlove/action-ejs@main
   with:
     template: |
-      <h1><%= process.env.GITHUB_REF %></h1> commiter: <%= context.payload.head_commit.author.name %>
+      <h1><%= env.GITHUB_REF %></h1> commiter: <%= context.payload.head_commit.author.name %>
+```
+
+```yml
+- name: action-ejs
+  uses: jaywcjlove/action-ejs@main
+  with:
+    template-file: template/demo.html
+    output: build/template/demo.html
+    vars: |
+      { "htmlContent": "${{ env.GITHUB_REF }}" }
 ```
 
 ## Inputs

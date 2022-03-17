@@ -30,7 +30,7 @@ jobs:
         uses: ./
         with:
           template: |
-            <h1><%= process.env.GITHUB_REF %></h1> commiter: <%= context.payload.head_commit.author.name %>
+            <h1><%= env.GITHUB_REF %></h1> commiter: <%= context.payload.head_commit.author.name %>
           output: build/test2.html
       - run: cat build/test2.html
 

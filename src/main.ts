@@ -21,11 +21,11 @@ try {
     info(`${JSON.stringify(process.env, undefined, 2)}`);
     endGroup();
 
-    let ejsData: Record<string, any> = { context, process };
+    let ejsData: Record<string, any> = { context, env: process.env };
     let ejsOptions: Options = {}
 
     try {
-      ejsData = { ...JSON.parse(vars), context, process };
+      ejsData = { ...JSON.parse(vars), context, env: process.env };
     } catch (error) {
       setFailed(`Input "vars" Error: ${error.message}`);
     }
