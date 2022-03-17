@@ -47,7 +47,7 @@ jobs:
         with:
           template: <div><%= LICENSE %></div><div><%= markdown %></div>
           output: build/template/demo.html
-          vars-file:
+          vars-file: !!with
             markdown: README.md
             LICENSE: LICENSE
           vars: |

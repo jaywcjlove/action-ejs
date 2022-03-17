@@ -1,6 +1,9 @@
 Action EJS
 ===
 
+[![CI](https://github.com/jaywcjlove/action-ejs/actions/workflows/ci.yml/badge.svg)](https://github.com/jaywcjlove/action-ejs/actions/workflows/ci.yml)
+[![TEST](https://github.com/jaywcjlove/action-ejs/actions/workflows/test.yml/badge.svg)](https://github.com/jaywcjlove/action-ejs/actions/workflows/test.yml)
+
 A github action to render a [`ejs`](https://github.com/mde/ejs) template using github context
 
 ## Usage
