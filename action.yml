@@ -16,7 +16,7 @@ inputs:
     required: false
   
   vars-file: 
-    description: 'Read the contents of the file into a variable.'
+    description: 'Read the contents of the file into a vars.'
     default: '{}'
     required: false
   

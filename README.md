@@ -40,12 +40,25 @@ Following objects are exposed, and can be used in template file:
       { "htmlContent": "${{ env.GITHUB_REF }}" }
 ```
 
+```yml
+- name: action-ejs
+  uses: jaywcjlove/action-ejs@main
+  with:
+    template: <div><%= LICENSE %></div><div><%= markdown %></div>
+    output: build/demo.html
+    vars-file: |
+      {
+        "markdown": "./README.md",
+        "LICENSE": "./LICENSE"
+      }
+```
+
 ## Inputs
 
 - `template` Input ESJ template string.
 - `template-file` Input ESJ template file path.
 - `vars` Input variables. A dictionary of variables in JSON format to be used in the template. `default: '{}'`
-- `vars-file` Input variables. A dictionary of variables in JSON format to be used in the template. `default: '{}'`
+- `vars-file` Read the contents of the file into a `vars`. `default: '{}'`
 - `options` A JSON format string of options to be passed to the template engine. `default: '{}'`
 - `output` output html path `default: build/index.html`
 

@@ -69,9 +69,9 @@ try {
     endGroup();
 
     setOutput('content', html);
-    info(`${output}`);
 
     await fs.promises.writeFile(output, html);
+    info(`Generated: ${path.relative(process.cwd(), output)}`);
   })();
 } catch (error) {
   setFailed(error.message);
