@@ -22,11 +22,13 @@ jobs:
           vars: |
             { "name": "${{ github.repository }}", "conclusion": "${{ steps.ejs.conclusion }}" }
       
+      - run: cat build/index.html
+      - run: echo "${{ steps.ejs.outputs.content }}"
+      
       - name: process.env & context test case
         uses: ./
         with:
           template: |
             <h1><%= process.env.GITHUB_REF %></h1> commiter: <%= context.payload.head_commit.author.name %>
-      
-      - run: cat build/index.html
-      - run: echo "${{ steps.ejs.outputs.content }}"
+          output: build/test2.html
+      - run: cat build/test2.html
