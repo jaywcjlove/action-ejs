@@ -3,8 +3,6 @@ import path from 'path';
 import { setFailed, setOutput, getInput, info, startGroup, endGroup } from '@actions/core';
 import { getOctokit, context } from '@actions/github';
 import { render, renderFile, Options } from 'ejs';
-import * as yaml from 'yaml';
-
 
 try {
   ;(async () => {
@@ -24,23 +22,25 @@ try {
     endGroup();
     startGroup(`Input vars-file:`);
     info(`${JSON.stringify(varsFile, undefined, 2)}`);
-    info(`${JSON.stringify(yaml.parse(varsFile), undefined, 2)}`);
     endGroup();
 
     let ejsData: Record<string, any> = { context, env: process.env };
-    let ejsOptions: Options = {}
+    let ejsOptions: Options = {};
 
-    if (varsFile && Array.isArray(varsFile)) {
-      varsFile.forEach(item => {
-        Object.keys(item).forEach((key) => {
-          const fPaht = path.resolve(process.cwd(), item[key]);
+    try {
+      const data = JSON.parse(varsFile);
+      if (data) {
+        Object.keys(data).forEach((key) => {
+          const fPaht = path.resolve(process.cwd(), data[key]);
           let content = '';
           if (fs.existsSync(fPaht)) {
             content = fs.readFileSync(fPaht).toString();
           }
           ejsData[key] = content;
         });
-      });
+      }
+    } catch (error) {
+      setFailed(`Input "vars-file" Error: ${error.message}`);
     }
 
     try {

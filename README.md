@@ -45,6 +45,7 @@ Following objects are exposed, and can be used in template file:
 - `template` Input ESJ template string.
 - `template-file` Input ESJ template file path.
 - `vars` Input variables. A dictionary of variables in JSON format to be used in the template. `default: '{}'`
+- `vars-file` Input variables. A dictionary of variables in JSON format to be used in the template. `default: '{}'`
 - `options` A JSON format string of options to be passed to the template engine. `default: '{}'`
 - `output` output html path `default: build/index.html`
 
