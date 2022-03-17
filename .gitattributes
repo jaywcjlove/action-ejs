@@ -1,3 +1,5 @@
 *.js  linguist-vendored
 *.js  linguist-detectable=false
+*.html  linguist-detectable=false
+*.ejs  linguist-detectable=false
 .husky/*  linguist-detectable=false
