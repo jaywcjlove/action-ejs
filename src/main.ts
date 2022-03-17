@@ -36,7 +36,7 @@ try {
     }
 
     const html = await render(template, ejsData, ejsOptions);
-    setOutput('svg', html);
+    setOutput('content', html);
 
     await fs.promises.writeFile(output, html);
   })();
