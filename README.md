@@ -29,7 +29,11 @@ Following objects are exposed, and can be used in template file:
 
 ## Inputs
 
-- `token` - Your `GITHUB_TOKEN`. This is required. Why do we need `token`? Read more here: [About the GITHUB_TOKEN secret](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token#about-the-github_token-secret). Default: `${{ github.token }}`
+- `template` Input ESJ template string.
+- `template-file` Input ESJ template file path.
+- `vars` Input variables. A dictionary of variables in JSON format to be used in the template. `default: '{}'`
+- `options` A JSON format string of options to be passed to the template engine. `default: '{}'`
+- `output` output html path `default: build/index.html`
 
 ## Outputs
 

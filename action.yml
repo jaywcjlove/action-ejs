@@ -10,6 +10,10 @@ inputs:
   template:
     description: 'Input ESJ template string'
     required: false
+
+  template-file:
+    description: 'Input ESJ template file path.'
+    required: false
   
   vars: 
     description: 'Input variables. A dictionary of variables in JSON format to be used in the template. '

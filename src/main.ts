@@ -2,13 +2,14 @@ import fs from 'fs';
 import path from 'path';
 import { setFailed, setOutput, getInput, info, startGroup, endGroup } from '@actions/core';
 import { getOctokit, context } from '@actions/github';
-import { render, Options } from 'ejs';
+import { render, renderFile, Options } from 'ejs';
 
 
 try {
   ;(async () => {
     const token = getInput('token');
     const template = getInput('template');
+    const templateFile = getInput('template-file');
     const vars = getInput('vars');
     const options = getInput('options');
     const output = path.resolve(process.cwd(), getInput('output'));
@@ -35,7 +36,15 @@ try {
       setFailed(`Input "options" Error: ${error.message}`);
     }
 
-    const html = await render(template, ejsData, ejsOptions);
+    let html = ''
+
+    const templateFilePath = path.resolve(process.cwd(), templateFile);
+    if (templateFile && fs.existsSync(templateFilePath)) {
+      html = await renderFile(templateFilePath, ejsData, ejsOptions);
+    } else {
+      html = await render(template, ejsData, ejsOptions);
+    }
+
     setOutput('content', html);
 
     await fs.promises.writeFile(output, html);
