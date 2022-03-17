@@ -1,0 +1,27 @@
+name: TEST
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test: 
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - run: mkdir -p build
+      - name: action-ejs
+        id: ejs
+        uses: ./
+        with:
+          template: |
+            <%= name %>
+          vars: |
+            { "name": "${{ steps.ejs.outputs.name }}" }
+      
+      - run: cat build/index.html
+      - run: ${{ steps.ejs.outputs.content }}
