@@ -5,7 +5,25 @@ on:
       - main
 
 jobs:
-  test:
+  test: 
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: action-ejs
+        # uses: jaywcjlove/action-ejs@main
+        id: ejs
+        uses: ./
+        with:
+          template: |
+            <%= name %>
+          vars: |
+            { "name": "${{ steps.ejs.outputs.name }}" }
+
+  build:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
