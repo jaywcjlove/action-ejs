@@ -48,8 +48,8 @@ jobs:
           template: <div><%= LICENSE %></div><div><%= markdown %></div>
           output: build/template/demo.html
           vars-file:
-            - markdown: README.md
-            - LICENSE: LICENSE
+            markdown: README.md
+            LICENSE: LICENSE
           vars: |
             { "htmlContent": "${{ steps.ejs.outputs.content }}" }
 
