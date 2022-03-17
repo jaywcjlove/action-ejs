@@ -33,6 +33,19 @@ jobs:
             <h1><%= env.GITHUB_REF %></h1> commiter: <%= context.payload.head_commit.author.name %>
           output: build/test2.html
       - run: cat build/test2.html
+      
+      - name: ⛑ -> options
+        uses: ./
+        with:
+          template: |
+            <h1>{{%= env.GITHUB_REF %}}</h1> commiter: {{%= context.payload.head_commit.author.name %}}
+          output: build/test3.html
+          options: |
+            {
+              "openDelimiter": "{{",
+              "closeDelimiter": "}}"
+            }
+      - run: cat build/test3.html
 
       - name: ⛑ -> template-file
         uses: ./
