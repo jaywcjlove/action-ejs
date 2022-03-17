@@ -15,7 +15,7 @@ jobs:
 
       - run: mkdir -p build/template
 
-      - name: test case -> base
+      - name: ⛑ -> base
         id: ejs
         uses: ./
         with:
@@ -26,7 +26,7 @@ jobs:
       - run: cat build/index.html
       - run: echo "${{ steps.ejs.outputs.content }}"
       
-      - name: test case -> process.env & context
+      - name: ⛑ -> process.env & context
         uses: ./
         with:
           template: |
@@ -34,11 +34,22 @@ jobs:
           output: build/test2.html
       - run: cat build/test2.html
 
-      - name: test case -> template-file
+      - name: ⛑ -> template-file
         uses: ./
         with:
           template-file: template/demo.html
           output: build/template/demo.html
+          vars: |
+            { "htmlContent": "${{ steps.ejs.outputs.content }}" }
+
+      - name: ⛑ -> template-file
+        uses: ./
+        with:
+          template: <div><%= LICENSE %></div><div><%= markdown %></div>
+          output: build/template/demo.html
+          vars-file:
+            - markdown: README.md
+            - LICENSE: LICENSE
           vars: |
             { "htmlContent": "${{ steps.ejs.outputs.content }}" }
 

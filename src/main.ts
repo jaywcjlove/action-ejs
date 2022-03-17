@@ -11,6 +11,7 @@ try {
     const template = getInput('template');
     const templateFile = getInput('template-file');
     const vars = getInput('vars');
+    const varsFile = getInput('vars-file');
     const options = getInput('options');
     const output = path.resolve(process.cwd(), getInput('output'));
 
@@ -20,12 +21,28 @@ try {
     startGroup(`Github process.env Object:`);
     info(`${JSON.stringify(process.env, undefined, 2)}`);
     endGroup();
+    startGroup(`Github process.env Object:`);
+    info(`${JSON.stringify(varsFile, undefined, 2)}`);
+    endGroup();
 
     let ejsData: Record<string, any> = { context, env: process.env };
     let ejsOptions: Options = {}
 
+    if (varsFile && Array.isArray(varsFile)) {
+      varsFile.forEach(item => {
+        Object.keys(item).forEach((key) => {
+          const fPaht = path.resolve(process.cwd(), item[key]);
+          let content = '';
+          if (fs.existsSync(fPaht)) {
+            content = fs.readFileSync(fPaht).toString();
+          }
+          ejsData[key] = content;
+        });
+      });
+    }
+
     try {
-      ejsData = { ...JSON.parse(vars), context, env: process.env };
+      ejsData = { ...JSON.parse(vars), ...ejsData };
     } catch (error) {
       setFailed(`Input "vars" Error: ${error.message}`);
     }
@@ -35,8 +52,8 @@ try {
     } catch (error) {
       setFailed(`Input "options" Error: ${error.message}`);
     }
-
-    let html = ''
+    
+    let html = '';
 
     const templateFilePath = path.resolve(process.cwd(), templateFile);
     if (templateFile && fs.existsSync(templateFilePath)) {
