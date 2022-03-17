@@ -24,4 +24,4 @@ jobs:
             { "name": "${{ steps.ejs.outputs.name }}" }
       
       - run: cat build/index.html
-      - run: ${{ steps.ejs.outputs.content }}
+      - run: echo "${{ steps.ejs.outputs.content }}"
