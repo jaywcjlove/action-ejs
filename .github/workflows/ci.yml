@@ -13,6 +13,8 @@ jobs:
         with:
           node-version: 14
 
+      - run: mkdir -p build
+      
       - name: action-ejs
         # uses: jaywcjlove/action-ejs@main
         id: ejs
