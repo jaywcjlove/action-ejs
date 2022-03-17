@@ -3,6 +3,7 @@ import path from 'path';
 import { setFailed, setOutput, getInput, info, startGroup, endGroup } from '@actions/core';
 import { getOctokit, context } from '@actions/github';
 import { render, renderFile, Options } from 'ejs';
+import * as yaml from 'yaml';
 
 
 try {
@@ -21,8 +22,9 @@ try {
     startGroup(`Github process.env Object:`);
     info(`${JSON.stringify(process.env, undefined, 2)}`);
     endGroup();
-    startGroup(`Github process.env Object:`);
+    startGroup(`Input vars-file:`);
     info(`${JSON.stringify(varsFile, undefined, 2)}`);
+    info(`${JSON.stringify(yaml.parse(varsFile), undefined, 2)}`);
     endGroup();
 
     let ejsData: Record<string, any> = { context, env: process.env };
@@ -62,7 +64,12 @@ try {
       html = await render(template, ejsData, ejsOptions);
     }
 
+    startGroup(`Output content:`);
+    info(`${html}`);
+    endGroup();
+
     setOutput('content', html);
+    info(`${output}`);
 
     await fs.promises.writeFile(output, html);
   })();
