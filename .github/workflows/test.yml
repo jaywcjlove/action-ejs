@@ -14,14 +14,19 @@ jobs:
           node-version: 14
 
       - run: mkdir -p build
-      - name: action-ejs
+      - name: base test case
         id: ejs
         uses: ./
         with:
-          template: <h1><%= name %> <div><div></h1>
-            
+          template: <h1><%= name %> <div><%= conclusion %><div></h1>
           vars: |
             { "name": "${{ github.repository }}", "conclusion": "${{ steps.ejs.conclusion }}" }
+      
+      - name: process.env & context test case
+        uses: ./
+        with:
+          template: |
+            <h1><%= process.env.GITHUB_REF %></h1> commiter: <%= context.payload.head_commit.author.name %>
       
       - run: cat build/index.html
       - run: echo "${{ steps.ejs.outputs.content }}"
