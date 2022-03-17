@@ -30,6 +30,16 @@ A github action to render a [`ejs`](https://github.com/mde/ejs) template using g
       }
 ```
 
+```yml
+- name: action-ejs
+  uses: jaywcjlove/action-ejs@main
+  with:
+    template-file: template/demo.html
+    output: build/template/demo.html
+    vars: |
+      { "htmlContent": "${{ env.GITHUB_REF }}" }
+```
+
 Following objects are exposed, and can be used in template file:
 
 - `context`: The [Context](https://github.com/actions/toolkit/blob/main/packages/github/src/context.ts) object in [@actions/github](https://github.com/actions/toolkit/tree/main/packages/github)
@@ -41,16 +51,6 @@ Following objects are exposed, and can be used in template file:
   with:
     template: |
       <h1><%= env.GITHUB_REF %></h1> commiter: <%= context.payload.head_commit.author.name %>
-```
-
-```yml
-- name: action-ejs
-  uses: jaywcjlove/action-ejs@main
-  with:
-    template-file: template/demo.html
-    output: build/template/demo.html
-    vars: |
-      { "htmlContent": "${{ env.GITHUB_REF }}" }
 ```
 
 ## Inputs
