@@ -52,7 +52,7 @@ jobs:
           output: build/demo.html
           vars-file: |
             {
-              "markdown": "./README.md"
+              "markdown": "./README.md",
               "LICENSE": "./LICENSE"
             }
 
