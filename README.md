@@ -17,6 +17,19 @@ A github action to render a [`ejs`](https://github.com/mde/ejs) template using g
       { "name": "${{ github.repository }}", "conclusion": "${{ steps.ejs.conclusion }}" }
 ```
 
+```yml
+- name: action-ejs
+  uses: jaywcjlove/action-ejs@main
+  with:
+    template: <div><%= LICENSE %></div><div><%= markdown %></div>
+    output: build/demo.html
+    vars-file: |
+      {
+        "markdown": "./README.md",
+        "LICENSE": "./LICENSE"
+      }
+```
+
 Following objects are exposed, and can be used in template file:
 
 - `context`: The [Context](https://github.com/actions/toolkit/blob/main/packages/github/src/context.ts) object in [@actions/github](https://github.com/actions/toolkit/tree/main/packages/github)
@@ -38,19 +51,6 @@ Following objects are exposed, and can be used in template file:
     output: build/template/demo.html
     vars: |
       { "htmlContent": "${{ env.GITHUB_REF }}" }
-```
-
-```yml
-- name: action-ejs
-  uses: jaywcjlove/action-ejs@main
-  with:
-    template: <div><%= LICENSE %></div><div><%= markdown %></div>
-    output: build/demo.html
-    vars-file: |
-      {
-        "markdown": "./README.md",
-        "LICENSE": "./LICENSE"
-      }
 ```
 
 ## Inputs
