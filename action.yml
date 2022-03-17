@@ -15,6 +15,11 @@ inputs:
     description: 'Input ESJ template file path.'
     required: false
   
+  vars-file: 
+    description: 'Read the contents of the file into a variable.'
+    default: '{}'
+    required: false
+  
   vars: 
     description: 'Input variables. A dictionary of variables in JSON format to be used in the template. '
     default: '{}'
