@@ -51,7 +51,7 @@ jobs:
           template: <div><%= LICENSE %></div><div><%= markdown %></div>
           output: build/demo.html
           vars-file: >
-            - markdown: ./README.md
-            - LICENSE: ./LICENSE
+            markdown: ./README.md
+            LICENSE: ./LICENSE
 
       - run: cat build/demo.html
