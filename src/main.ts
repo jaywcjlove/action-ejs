@@ -16,8 +16,11 @@ try {
     startGroup(`Github Context:`);
     info(`${JSON.stringify(context, undefined, 2)}`);
     endGroup();
-    startGroup(`Github process.env:`);
-    info(`${JSON.stringify(context, undefined, 2)}`);
+    startGroup(`Github process Object:`);
+    info(`${JSON.stringify(process, undefined, 2)}`);
+    endGroup();
+    startGroup(`Github process.env Object:`);
+    info(`${JSON.stringify(process.env, undefined, 2)}`);
     endGroup();
 
     let ejsData: Record<string, any> = { context, process };

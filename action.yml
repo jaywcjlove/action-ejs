@@ -13,10 +13,12 @@ inputs:
   
   vars: 
     description: 'Input variables. A dictionary of variables in JSON format to be used in the template. '
+    default: '{}'
     required: false
   
   options: 
     description: 'A JSON format string of options to be passed to the template engine.'
+    default: '{}'
     required: false
 
   output:
