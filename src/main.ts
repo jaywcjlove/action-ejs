@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { setFailed, setOutput, getInput, info, startGroup, endGroup } from '@actions/core';
-import { getOctokit, context } from '@actions/github';
+import { context } from '@actions/github';
 import { render, renderFile, Options } from 'ejs';
 
 try {
