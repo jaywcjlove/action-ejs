@@ -1,6 +1,7 @@
 Action EJS
 ===
 
+[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee)](https://jaywcjlove.github.io/#/sponsor)
 [![CI](https://github.com/jaywcjlove/action-ejs/actions/workflows/ci.yml/badge.svg)](https://github.com/jaywcjlove/action-ejs/actions/workflows/ci.yml)
 [![TEST](https://github.com/jaywcjlove/action-ejs/actions/workflows/test.yml/badge.svg)](https://github.com/jaywcjlove/action-ejs/actions/workflows/test.yml)
 
