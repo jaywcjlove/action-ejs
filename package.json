@@ -3,7 +3,7 @@
   "version": "1.0.4",
   "private": true,
   "scripts": {
-    "prepare": "husky install && npm run build",
+    "prepare": "husky && npm run build",
     "build": "ncc build src/main.ts -o lib",
     "watch": "ncc watch src/main.ts -o lib"
   },
@@ -17,6 +17,10 @@
     "*.ts?(x)": [
       "npm run build"
     ]
+  },
+  "engines": {
+    "node": ">=v20.11.0",
+    "npm": ">=10.2.4"
   },
   "dependencies": {
     "@actions/core": "~1.10.0",
